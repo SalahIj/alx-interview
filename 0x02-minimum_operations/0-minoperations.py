@@ -2,20 +2,22 @@
 """ The imported modules """
 
 
-def minOperations(n):
+def minOperations(n: int) -> int:
     """ The function definition
     Args:
         n: the input
     """
-    if n <= 1:
+    a = 'H'
+    b = 'H'
+    op = 0
+    while (len(b) < n):
+        if n % len(b) == 0:
+            op += 2
+            a = b
+            b += b
+        else:
+            op += 1
+            b += a
+    if len(b) != n:
         return 0
-
-    dp = [float('inf')] * (n + 1)
-    dp[1] = 0
-
-    for i in range(2, n + 1):
-        for j in range(1, i):
-            if i % j == 0:
-                dp[i] = min(dp[i], dp[j] + i // j)
-
-    return dp[n] if dp[n] != float('inf') else 0
+    return op
