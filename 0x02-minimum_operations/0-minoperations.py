@@ -1,23 +1,21 @@
 #!/usr/bin/python3
-""" The imported modules """
+""" Minimum Operations
+    """
 
 
 def minOperations(n: int) -> int:
-    """ The function definition
-    Args:
-        n: the input
-    """
-    a = 'H'
-    b = 'H'
+    """ Minimum Operations needed to get n H characters """
+    next = 'H'
+    body = 'H'
     op = 0
-    while (len(b) < n):
-        if n % len(b) == 0:
+    while (len(body) < n):
+        if n % len(body) == 0:
             op += 2
-            a = b
-            b += b
+            next = body
+            body += body
         else:
             op += 1
-            b += a
-    if len(b) != n:
+            body += next
+    if len(body) != n:
         return 0
     return op
